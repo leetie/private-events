@@ -1,14 +1,11 @@
-<h1>Users#show</h1>
 
-<h3>User.name</h3>
-<p><%= @user.name %></p><br />
+<h2><%= @user.name %></h2><br />
 
-<h3>User.username</h3>
-<p><%= @user.username %></p><br />
-
+<h3>Your Username</h3>
+<p><strong><%= @user.username %></strong></p><br />
+<%= link_to "Edit Info", edit_user_path(@user) %>
 <h3>Events Attended</h3>
 <% @user.attended_events.all.each do |e| %>
-  <%= e.title %><br />
-  <%= e.creator.name %>
+  <%= link_to "#{e.title}", event_path(e) %><br />
 <% end %>
 

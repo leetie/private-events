@@ -12,8 +12,9 @@
         <%= "Signed in as #{User.find(cookies[:id].to_i).username}"%>
         <%= form_tag('/users/sign_out') do |f| %>
           <%= submit_tag("Log Out", class: "w3-button") %>
+        <% end %>
+        <%= link_to 'My Profile', user_path(cookies[:id]), class: "w3-button" %>
       </div>
-      <% end %>
 
     <% else %>
       <div class="w3-container w3-blue">
@@ -24,9 +25,13 @@
       </div>
     <% end %>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <p id="notice"><%= notice %></p>
   </head>
 
   <body>
     <%= yield %>
   </body>
 </html>
+
+

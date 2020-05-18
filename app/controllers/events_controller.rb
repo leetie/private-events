@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :confirm_login, only: [:create, :edit, :update, :destroy]
   # GET /events
   # GET /events.json
   def index
@@ -44,6 +44,7 @@ class EventsController < ApplicationController
   def rsvp
     @event = Event.find(params[:event])
     @event.attendees << User.find(cookies[:id])
+    #@event.attendees << User.create(name: "eddy", username: "Sponge eddy")
     @event.save
     redirect_to event_path(@event)
   end
@@ -79,5 +80,12 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:title, :date, :description, :user_id, :creator_id, :creator)
+    end
+
+    def confirm_login
+      if cookies[:id].nil?
+        flash.notice = "Please Log In Before Creating Event"
+        redirect_to root_path
+      end
     end
 end

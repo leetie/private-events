@@ -1,4 +1,5 @@
 body {
+  text-align: center;
   background-color: #fff;
   color: #333;
   margin: 33px; }
@@ -16,8 +17,8 @@ pre {
 a {
   color: #000; }
 
-a:visited {
-  color: #666; }
+// a:visited {
+//   color: #666; }
 
 a:hover {
   color: #fff;
@@ -37,12 +38,12 @@ div.actions {
   color: green; }
 
 .field_with_errors {
+  
   padding: 2px;
   background-color: red;
-  display: table; }
+   }
 
 #error_explanation {
-  width: 450px;
   border: 2px solid red;
   padding: 7px 7px 0;
   margin-bottom: 20px;

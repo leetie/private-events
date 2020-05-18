@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_004555) do
+ActiveRecord::Schema.define(version: 2020_05_18_024214) do
 
 # Could not dump table "events" because of following StandardError
 #   Unknown type 'reference' for column 'user_id'
 
-  create_table "events_users", force: :cascade do |t|
+  create_table "events_users", id: false, force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
     t.index ["event_id"], name: "index_events_users_on_event_id"

@@ -32,10 +32,11 @@
         </div>
         <div class="w3-container">
           <td><%= link_to 'Details', event, class: "w3-button" %></td>
+          <% if cookies[:id] && User.find(cookies[:id]) == event.creator %>
 
             <td><%= link_to 'Edit', edit_event_path(event), class: "w3-button" %></td>
-            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "w3-button" %></td>
-
+            <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "w3-button" %></td>
+          <% end %>
         </div>
       </tr>
       </div>
