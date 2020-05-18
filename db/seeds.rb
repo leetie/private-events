@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+100.times do |i|
+  User.create(name: "test_user", username: "Agent #{rand(0..100)}")
+end
+
+120.times do |i|
+  rando = rand(1..(User.count))
+  User.find(rando).events.create(title: "random event", description: "auto-generated event", date: Time.new(rand(1999..2030), rand(1..12))
+)
+end
