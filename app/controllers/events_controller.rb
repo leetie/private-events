@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all #.includes(:creator)
+    @events = Event.all
+
+    #redundant with Event scope
+    # @previous_events = Event.past
+    # @upcoming_events = Event.upcoming
   end
 
   # GET /events/1

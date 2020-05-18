@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Events</h1>
+<%= link_to 'New Event', new_event_path, class: "w3-button" %>
+<h1>Upcoming Events</h1>
 
 <table>
   <thead>
@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+    <% Event.upcoming_events.each do |event| %>
     <div class="w3-card-4">
       <div class="w3-container w3-center w3-blue">
       <tr>
@@ -47,4 +47,50 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path, class: "w3-button" %>
+<h1>Past Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Creator</th>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Event.previous_events.each do |event| %>
+    <div class="w3-card-4">
+      <div class="w3-container w3-center w3-blue">
+      <tr>
+        <div class="w3-container w3-blue">
+          <td><%= event.creator.username %></td>
+        </div>
+        <div class="w3-container">
+          <td><%= event.title %></td>
+        </div>
+        <div class="w3-container">
+          <td><%= event.date %></td>
+        </div>
+        <div class="w3-container">
+          <td><%= event.description %></td>
+        </div>
+        <div class="w3-container">
+          <td><%= link_to 'Details', event, class: "w3-button" %></td>
+          <% if cookies[:id] && User.find(cookies[:id]) == event.creator %>
+
+            <td><%= link_to 'Edit', edit_event_path(event), class: "w3-button" %></td>
+            <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "w3-button" %></td>
+          <% end %>
+        </div>
+      </tr>
+      </div>
+    </div>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      flash.notice = "Your User ID used to Log In is #{@user.id}"
       redirect_to user_path(@user)
     end
   end
@@ -31,6 +32,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @upcoming_events = @user.attended_events.where("Date > ?", Time.now)
+    @previous_events = @user.attended_events.where("Date < ?", Time.now)
   end
 
   def sign_in
