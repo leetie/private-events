@@ -31,6 +31,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @upcoming_events = @user.attended_events.where("Date > ?", Time.now)
+    @previous_events = @user.attended_events.where("Date < ?", Time.now)
   end
 
   def sign_in

@@ -13,7 +13,7 @@
         <%= form_tag('/users/sign_out') do |f| %>
           <%= submit_tag("Log Out", class: "w3-button") %>
         <% end %>
-        <%= link_to 'My Profile', user_path(cookies[:id]), class: "w3-button" %>
+        <%= link_to 'My Profile', user_path(cookies[:id]), class: "w3-button" %><%= link_to 'Events', events_path, class: "w3-button"%>
       </div>
 
     <% else %>
