@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<%= render partial: "rsvp"%>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @event.creator.username %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<% if session[:id].to_i == @event.creator.id %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %>
+<%= link_to 'Back', events_path %>
+
+<p>
+  <strong>Attendees</strong><br />
+  <% @event.attendees.all.each do |a| %>
+    <%= a.username%><br />
+  <% end %>
+</p>
+
