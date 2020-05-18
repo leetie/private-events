@@ -1,0 +1,14 @@
+<%= "Enter id of user to login as" %>
+<%= form_tag login_path, method: :post do %>
+  <div class="field"%>
+    <%= label_tag :id %>
+    <%= text_field_tag :id %>
+    <br />
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Login" %><br />
+  </div>
+<% end %>
+
+<%= link_to "Home", root_path %>

@@ -7,6 +7,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if session[:id].nil? %>
+      <%= link_to "Log In", login_path %><br />
+    <% else %>
+      <%= "Logged in as #{User.find(session[:id]).username}"%>
+      <%= link_to "Log Out", logout_path %>
+    <% end %>
   </head>
 
   <body>
