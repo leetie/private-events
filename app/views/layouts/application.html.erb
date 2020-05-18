@@ -7,12 +7,23 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if session[:id].nil? %>
-      <%= link_to "Log In", login_path %><br />
+    <% if cookies[:id] %>
+      <div class="w3-container w3-blue">
+        <%= "Signed in as #{User.find(cookies[:id].to_i).username}"%>
+        <%= form_tag('/users/sign_out') do |f| %>
+          <%= submit_tag("Log Out", class: "w3-button") %>
+      </div>
+      <% end %>
+
     <% else %>
-      <%= "Logged in as #{User.find(session[:id]).username}"%>
-      <%= link_to "Log Out", logout_path %>
+      <div class="w3-container w3-blue">
+          <%= form_tag('/users/sign_in') do |f| %>
+            <%= text_field_tag :id %><br />
+            <%= submit_tag("Log In", class: "w3-button") %>
+          <% end %>
+      </div>
     <% end %>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
 
   <body>

@@ -1,0 +1,4 @@
+<%= form_with(url: "/rsvp", method: "post") do |f| %>
+  <%= f.text_field :event, hidden: true, value: @event.id.to_i %>
+  <%= f.submit %>
+<% end %>
